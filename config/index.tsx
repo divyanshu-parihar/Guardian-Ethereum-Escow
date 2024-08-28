@@ -1,7 +1,5 @@
 // config/index.tsx
-
 import { defaultWagmiConfig } from "@web3modal/wagmi/react/config";
-
 import { cookieStorage, createStorage } from "wagmi";
 import { mainnet, sepolia } from "wagmi/chains";
 
@@ -17,8 +15,23 @@ const metadata = {
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
+const localNetwork = {
+  id: 31337, // Replace with your local network's Chain ID (e.g., 1337 for Ganache)
+  name: "Hardhat",
+  network: "localhost",
+  rpcUrls: {
+    default: {
+      http: ["http://localhost:8545"], // Replace with your local network's RPC URL
+    },
+  },
+  nativeCurrency: {
+    name: "Ether",
+    symbol: "ETH",
+    decimals: 18,
+  },
+};
 // Create wagmiConfig
-const chains = [mainnet, sepolia] as const;
+const chains = [mainnet, sepolia, localNetwork] as const;
 export const config = defaultWagmiConfig({
   chains,
   projectId,

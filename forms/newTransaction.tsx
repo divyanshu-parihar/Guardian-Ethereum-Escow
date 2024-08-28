@@ -18,8 +18,8 @@ const formSchema = z.object({
   receiverAddr: z.string().min(2, {
     message: "Please enter a valid address.",
   }),
-  amount: z.number({ message: "Please enter a valid amount." }),
-  description: z.string({ message: "Please enter a description." }),
+  amount: z.string(),
+  description: z.string(),
 });
 
 export function NewEscrowForm() {
@@ -28,7 +28,7 @@ export function NewEscrowForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       receiverAddr: "",
-      amount: 0,
+      amount: "0.01",
       description: "",
     },
   });
